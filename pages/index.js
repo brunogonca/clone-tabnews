@@ -1,9 +1,9 @@
 function Home() {
-  return <h1>Eu amo muito minha família e meu amigos</h1>;
-}
-
-function teste1() {
-  console.log("teste");
+  return (
+    <h1>
+      Oi, pai! Queria dizer que te amo e perguntar como foi a sessão hoje?
+    </h1>
+  );
 }
 
 export default Home;
