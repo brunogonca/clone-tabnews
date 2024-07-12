@@ -3,7 +3,7 @@ import orchestrator from "tests/orchestrator.js";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
-  await database.query("drop schema public cascade; create schema public");
+  await database.query("drop schema public cascade; create schema public;");
 });
 
 test("POST to /api/v1/migrations should return 200", async () => {
@@ -15,17 +15,8 @@ test("POST to /api/v1/migrations should return 200", async () => {
   const response1Body = await response1.json();
 
   expect(Array.isArray(response1Body)).toBe(true);
-
-  const migrationsResult = await database.query("SELECT * FROM pgmigrations;");
-
   expect(response1Body.length).toBeGreaterThan(0);
 
-  for (let i = 0; i < response1Body.lenght; i++) {
-    expect(responseBody[i].name).toEqual(migrationsResult.rows[i].name);
-  }
-});
-
-test("POST to /api/v1/migrations should return 200", async () => {
   const response2 = await fetch("http://localhost:3000/api/v1/migrations", {
     method: "POST",
   });
